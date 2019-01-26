@@ -22,9 +22,36 @@ class BankAccountTest {
     }
 
     @Test
+    /**
+     *  it needs to have @ . with characters inbetween
+     *  can't involve more than @
+     *  can involve ! & ' * + - = ? . before @ as
+     *  can involve digits
+     *  no spaces are valid
+     *  can involve both uppercase and lowercase letters
+     */
     void isEmailValidTest(){
         assertTrue(BankAccount.isEmailValid( "a@b.com"));
         assertFalse( BankAccount.isEmailValid(""));
+
+        assertTrue(BankAccount.isEmailValid("a-b@c.com"));
+        assertTrue(BankAccount.isEmailValid("a.b@c.com"));
+        assertTrue(BankAccount.isEmailValid("a_b@c.com"));
+        assertTrue(BankAccount.isEmailValid("a?b@c.com"));
+        assertTrue(BankAccount.isEmailValid("a*b@c.com"));
+        assertTrue(BankAccount.isEmailValid("a+b@c.com"));
+        assertTrue(BankAccount.isEmailValid("22@c.com"));
+        assertTrue(BankAccount.isEmailValid("ab22@c.com"));
+        assertTrue(BankAccount.isEmailValid( "A@b.com"));
+
+
+        assertFalse( BankAccount.isEmailValid("  "));
+        assertFalse( BankAccount.isEmailValid("@."));
+        assertFalse( BankAccount.isEmailValid(" @ . "));
+        assertFalse( BankAccount.isEmailValid("a.com"));
+        assertFalse( BankAccount.isEmailValid("22"));
+        assertFalse( BankAccount.isEmailValid("a@@b.com"));
+        assertFalse( BankAccount.isEmailValid("a@b..com"));
     }
 
     @Test
