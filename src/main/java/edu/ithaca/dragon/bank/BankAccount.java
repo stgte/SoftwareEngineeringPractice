@@ -38,7 +38,27 @@ public class BankAccount {
         }
 
     }
-
+    /**
+     * returns true is amount is valid, if it's positive and has less than 2 decimal points
+     * args: double
+     * o: bool
+     */
+    public static boolean isAmountValid(Double amount) {
+        if (amount<0){
+            return false;
+        }
+        String amountStr=Double.toString(amount);
+        int count=0;
+        for (int i=amountStr.indexOf('.'); i<amountStr.length();i++){
+            count++;
+        }
+        if (count>3){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
     public static boolean isEmailValid(String email){
         if (email.indexOf('@') == -1 || email.indexOf('@')==0){
