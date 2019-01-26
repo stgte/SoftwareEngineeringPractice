@@ -14,6 +14,9 @@ class BankAccountTest {
 
         BankAccount bankAcc1= new BankAccount("c@s.com", 75.5);
         assertEquals(75.5, bankAcc1.getBalance());
+
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -22.0));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 22.222));;
     }
 
     @Test
@@ -28,6 +31,7 @@ class BankAccountTest {
         assertEquals(100, bankAccount.getBalance());
         assertThrows(IllegalArgumentException.class, ()->bankAccount.withdraw(200));
         assertThrows(IllegalArgumentException.class, ()->bankAccount.withdraw(-200));
+        assertThrows(IllegalArgumentException.class, ()->bankAccount.withdraw(5.255));
 
         bankAccount.withdraw(22.4);
         assertEquals(77.6, bankAccount.getBalance());
